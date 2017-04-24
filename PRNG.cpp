@@ -6,7 +6,7 @@
 #include <math.h>
 using namespace std;
 using namespace NTL;
-ZZ convertir_decimal(vector <int> a, int bits_num)
+ZZ convertir_decimal(vector <bool> a, int bits_num)
 {
     ZZ num;
     num = 0;
@@ -23,7 +23,7 @@ ZZ convertir_decimal(vector <int> a, int bits_num)
     }
     return num;
 }
-void rotar_derecha(vector <int> &vec, int indice, int elementos, int vueltas)
+void rotar_derecha(vector <bool> &vec, int indice, int elementos, int vueltas)
 {
     for(int j = vueltas; j > 0; j--)
     {
@@ -35,7 +35,7 @@ void rotar_derecha(vector <int> &vec, int indice, int elementos, int vueltas)
         }
     }
 }
-void rotar_izquierda(vector <int> &vec, int indice, int elementos, int vueltas)
+void rotar_izquierda(vector <bool> &vec, int indice, int elementos, int vueltas)
 {
     for(int j = vueltas; j > 0; j--)
     {
@@ -50,7 +50,7 @@ void rotar_izquierda(vector <int> &vec, int indice, int elementos, int vueltas)
 void ga(int bits_seed, int bits_num, int particiones, int vueltas)
 {
     srand(time(NULL));
-    vector <int> a;
+    vector <bool> a;
     for(int i = 0; i < bits_num; i++)
     {
         a.push_back(0);
