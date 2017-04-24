@@ -4,100 +4,15 @@
 #include <Cesar.h>
 #include <Afin.h>
 #include <Rail Fence.h>
+#include "PRNG.h"
 #include <time.h>
-#include <vector>
-#include <stdlib.h>
-#include <algorithm>
-#include <math.h>
 using namespace std;
 using namespace NTL;
-/*void rotar_derecha(vector <int> &vec, int indice, int elementos, int vueltas)
-{
-    for(int j = vueltas; j > 0; j--)
-    {
-        for(int i = elementos + indice - 1; i > indice; i--)
-        {
-            int temp = vec[i];
-            vec[i] = vec[i - 1];
-            vec[i - 1] = temp;
-        }
-    }
-}
-void rotar_izquierda(vector <int> &vec, int indice, int elementos, int vueltas)
-{
-    for(int j = vueltas; j > 0; j--)
-    {
-        for(int i = indice; i < indice + elementos - 1; i++)
-        {
-            int temp = vec[i];
-            vec[i] = vec[i + 1];
-            vec[i + 1] = temp;
-        }
-    }
-}
-int ga(int bits_seed, int bits_num, int particiones, int vueltas)
-{
-    srand(time(NULL));
-    vector <int> a;
-    for(int i = 0; i < bits_num; i++)
-    {
-        a.push_back(0);
-    }
-    for(int i = 0; i < bits_seed; i++)
-    {
-        a[i] = rand()%2;
-    }
-    int s = 0;
-    for(int i = bits_seed; i < bits_num; i++)
-    {
-        a[i] = a[s] ^ a[s+1];
-        s++;
-    }
-    for(int i = 0; i < bits_num; i++)
-    {
-        cout << a[i];
-    }
-    cout << " " << endl;
-
-    int elementos_pedazo = bits_num/particiones;
-    int residuo_elementos = bits_num%particiones;
-    int indice = 0;
-    while(indice < bits_num)
-    {
-        rotar_izquierda(a, indice, elementos_pedazo, vueltas);
-        indice += elementos_pedazo;
-        rotar_derecha(a, indice, elementos_pedazo, vueltas);
-        indice += elementos_pedazo;
-    }
-    for(int i = 0; i < bits_num; i++)
-    {
-        cout << a[i];
-    }
-    cout << " " << endl;
-    int num = 0;
-    int e = 0;
-    for(int i = bits_num - 1; i >= 0; i--)
-    {
-        if(a[i]==1)
-        {
-            num += pow(2,e);
-        }
-        else
-            num +=0;
-        e += 1;
-    }
-    cout << num;
-
-}*/
 
 int main()
 {
-    int * p;
-
-    while (p == p){
-    (*p++)+1;}
-    //ga(5,16,4,2);
-
+    ZZ num;
+    ga(50,1024,8,7);
     //Cesar
 
     /*Cesar cesar(4);
