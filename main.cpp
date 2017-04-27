@@ -4,6 +4,7 @@
 #include <Cesar.h>
 #include <Afin.h>
 #include <Rail Fence.h>
+#include "RSA.h"
 #include "PRNG.h"
 #include <time.h>
 using namespace std;
@@ -11,10 +12,15 @@ using namespace NTL;
 
 int main()
 {
-    ZZ num;
-    ga(50,1024,8,7);
-    //Cesar
+    srand(time(NULL));
+    string texto_plano = "Mango";
+    RSA Receptor; //pepe
+    ZZ clave_publica = Receptor.get_clave_publica();
+    RSA Emisor(clave_publica); //Juan
+    string texto_cifrado = Receptor.cifrar(texto_plano);
+    cout << Receptor.descifrar(texto_cifrado);
 
+    //Cesar
     /*Cesar cesar(4);
     string texto2 = "neo mango wango";
     cout << cesar.cifrar(texto2);*/
