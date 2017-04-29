@@ -1,4 +1,5 @@
 #include "PRNG.h"
+#include "BBS.h"
 #include <iostream>
 #include <time.h>
 #include <vector>
@@ -47,9 +48,8 @@ void rotar_izquierda(vector <bool> &vec, int indice, int elementos, int vueltas)
         }
     }
 }
-void ga(int bits_seed, int bits_num, int particiones, int vueltas)
+ZZ ga(int bits_seed, int bits_num, int particiones, int vueltas)
 {
-    srand(time(NULL));
     vector <bool> a;
     for(int i = 0; i < bits_num; i++)
     {
@@ -65,48 +65,29 @@ void ga(int bits_seed, int bits_num, int particiones, int vueltas)
         a[i] = a[s] ^ a[s+1];
         s++;
     }
-    for(int i = 0; i < bits_num; i++)
-    {
-        cout << a[i];
-    }
-    cout << " " << endl;
-    cout << " " << endl;
-    cout << " " << endl;
-    cout << " " << endl;
     int elementos_pedazo = bits_num/particiones;
     int residuo_elementos = bits_num%particiones;
-    if(residuo_elementos!=0)
-    {
-        elementos_pedazo += 1;
-    }
     int indice = 0;
-    while(indice < bits_num)
+    int cont_particiones = 0;
+    while(cont_particiones < particiones - 1)
     {
-        if((indice + elementos_pedazo) > bits_num)
+        if(cont_particiones%2 == 0)
         {
-            if(particiones%2!=0)
-            {
-                rotar_izquierda(a, indice, residuo_elementos, vueltas);
-                indice += elementos_pedazo;
-            }
-            else
-                rotar_derecha(a, indice, residuo_elementos, vueltas);
-                indice += elementos_pedazo;
+            rotar_izquierda(a, indice, elementos_pedazo, vueltas);
         }
-        rotar_izquierda(a, indice, elementos_pedazo, vueltas);
+        else
+            rotar_derecha(a, indice, elementos_pedazo, vueltas);
         indice += elementos_pedazo;
-        rotar_derecha(a, indice, elementos_pedazo, vueltas);
-        indice += elementos_pedazo;
+        cont_particiones++;
     }
-    for(int i = 0; i < bits_num; i++)
+    if(cont_particiones%2 == 0)
     {
-        cout << a[i];
+        rotar_izquierda(a, indice, bits_num - ((particiones - 1) * elementos_pedazo), vueltas);
     }
+    else
+        rotar_derecha(a, indice, bits_num - ((particiones - 1) * elementos_pedazo), vueltas);
+
     ZZ num;
     num = convertir_decimal(a, bits_num);
-    cout << " " << endl;
-    cout << " " << endl;
-    cout << " " << endl;
-    cout << " " << endl;
-    cout << num;
+    return num;
 }
